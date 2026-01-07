@@ -2,6 +2,7 @@ from typing import Any, Optional
 
 import requests
 
+
 from task._constants import USER_SERVICE_ENDPOINT
 
 
@@ -19,7 +20,8 @@ class UserClient:
 
         raise Exception(f"HTTP {response.status_code}: {response.text}")
 
-    async def get_user(self, id: int) -> dict[str, Any]:
+    def get_user(self, id: int) -> dict[str, Any]:
+        """Get a single user by ID - changed from async to sync"""
         headers = {"Content-Type": "application/json"}
 
         response = requests.get(url=f"{USER_SERVICE_ENDPOINT}/v1/users/{id}", headers=headers)
